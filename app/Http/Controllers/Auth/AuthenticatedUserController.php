@@ -10,6 +10,6 @@ class AuthenticatedUserController extends Controller
 {
     public function __invoke(Request $request): AuthenticatedUserResource
     {
-        return new AuthenticatedUserResource($request->user());
+        return new AuthenticatedUserResource($request->user()->load(['roles:id,name']));
     }
 }

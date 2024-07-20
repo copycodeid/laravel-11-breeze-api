@@ -23,10 +23,19 @@ class DatabaseSeeder extends Seeder
                 'email' => 'fitra@gmail.com',
                 'username' => 'fitra46_',
             ],
+            [
+                'name' => 'Asdar',
+                'email' => 'asdar@gmail.com',
+                'username' => 'asdar46_',
+            ],
         ]);
 
         $users->each(fn ($user) => User::factory()->create($user));
 
-        User::factory(1000)->create();
+        $this->call([
+            RolePermissionSeeder::class,
+        ]);
+
+        User::factory(100)->create()->each(fn ($user) => $user->assignRole('registrant'));
     }
 }
